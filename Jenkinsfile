@@ -10,13 +10,13 @@ pipeline {
 
         stage('Verificar archivos') {
             steps {
-                bat 'dir'
+                sh 'ls -la'
             }
         }
 
         stage('Verificar Docker') {
             steps {
-                bat 'docker --version'
+                sh 'docker --version'
             }
         }
 
