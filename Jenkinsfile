@@ -11,7 +11,8 @@ pipeline {
 
         stage('Docker Compose Down') {
             steps {
-                sh 'docker compose down'
+                sh 'docker compose down --remove-orphans || true'
+                sh 'docker rm -f wordpress-db wordpress-app || true'
             }
         }
 
