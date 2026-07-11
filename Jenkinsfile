@@ -2,27 +2,28 @@ pipeline {
     agent any
 
     stages {
-        stage('Preparar entorno') {
+
+        stage('Checkout desde Git') {
             steps {
-                echo 'Preparando entorno Docker'
+                echo 'Repositorio descargado correctamente'
             }
         }
 
-        stage('Verificar archivos') {
+        stage('Docker Compose Down') {
             steps {
-                sh 'ls -la'
+                sh 'docker compose down'
             }
         }
 
-        stage('Verificar Docker') {
+        stage('Docker Compose Up') {
             steps {
-                sh 'docker --version'
+                sh 'docker compose up -d'
             }
         }
 
-        stage('Finalizado') {
+        stage('Verificar despliegue') {
             steps {
-                echo 'Pipeline ejecutado correctamente'
+                sh 'docker ps'
             }
         }
     }
